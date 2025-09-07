@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<h1 style="text-align:center; font-size:2em; margin-bottom:20px;">
+    Welcome to <span style="color:#007bff;">MangaReaderR</span> 📚
+</h1>
+
+<h3>Explore All Manga</h3>
+<div class="horizontal-scroll" id="mangaGrid">
+    @if (ViewBag.AllManga is IEnumerable<MangaReaderR.Models.Manga> allManga)
+    {
+        foreach (var manga in allManga)
+        {
+            <div class="card" data-title="@manga.Title.ToLower()">
+                <img src="@manga.CoverUrl" alt="@manga.Title" />
+                <h4>
+                    <a asp-controller="Manga" asp-action="Read" asp-route-id="@manga.Id"
+                       style="color: var(--link-color); text-decoration: none;">
+                        Read: @manga.Title
+                    </a>
+                </h4>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No manga available.</p>
+    }
+</div>
+
+<hr style="margin:40px 0;" />
+
+<h3 style="margin-top:40px;">Most Popular Manga</h3>
+<div class="horizontal-scroll" id="popularMangaGrid">
+    @if (ViewBag.PopularManga is IEnumerable<MangaReaderR.Models.Manga> popularManga)
+    {
+        foreach (var manga in popularManga)
+        {
+            <div class="card" data-title="@manga.Title.ToLower()">
+                <img src="@manga.CoverUrl" alt="@manga.Title" />
+                <h4>
+                    <a asp-controller="Manga" asp-action="Read" asp-route-id="@manga.Id"
+                       style="color: var(--link-color); text-decoration: none;">
+                        Read: @manga.Title
+                    </a>
+                </h4>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No popular manga available.</p>
+    }
+</div>
+
+@if (ViewBag.User != null)
+{
+    <hr style="margin:40px 0;" />
+    <h3 style="margin-top:40px;">Your Reading History</h3>
+
+    @if (ViewBag.History is IEnumerable<dynamic> history && history.Any())
+    {
+        <div class="horizontal-scroll">
+            @foreach (var entry in history)
+            {
+                <div class="card">
+                    <img src="@entry.CoverUrl" alt="@entry.Title" />
+                    <h4>@entry.Title</h4>
+                    <p>Last Read: @entry.LastRead.ToString("g")</p>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No reading history yet.</p>
+    }
+
+    <div style="margin-top:30px; text-align:center;">
+        <a asp-controller="Manga" asp-action="Index" class="button" style="background-color:#28a745;">Browse Manga</a>
+        <a asp-controller="Account" asp-action="Logout" class="button"
+           style="background-color:#dc3545; margin-left:10px;">Logout</a>
+    </div>
+}

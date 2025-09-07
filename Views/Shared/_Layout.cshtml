@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="system">
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - MangaReaderR</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body data-theme="light">
+    <!-- 🔝 Navigation Bar -->
+    <nav
+        style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: var(--bg-color);">
+        <!-- Left: Logo + Navigation -->
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <a asp-controller="Home" asp-action="Index"
+                style="text-decoration: none; color: var(--text-color); font-weight: bold;">
+                📚 MangaReaderR
+            </a>
+            <a asp-controller="Manga" asp-action="Index">Manga</a>
+        </div>
+
+        <!-- Right: Search + Profile Dropdown -->
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <div>
+                <input type="text" id="searchInput" placeholder="Search manga by title..."
+                    style="width: 250px; padding: 8px;" />
+                <button id="searchButton"
+                    style="padding: 8px 12px; margin-left: 8px; background-color: var(--button-bg); color: blue;">Search</button>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-toggle">☰ Menu</button>
+                <div class="dropdown-menu">
+                    <a href="#">Profile</a>
+                    <a href="#">Filter</a>
+                    <a href="#">Settings</a>
+                    <a href="#">Community</a>
+
+                    <div class="submenu">
+                        <span>Theme Mode</span>
+                        <label><input type="radio" name="theme" value="dark"> Dark</label>
+                        <label><input type="radio" name="theme" value="light"> Light</label>
+                        <label><input type="radio" name="theme" value="system" checked> Sync with System</label>
+                    </div>
+
+                    @if (ViewBag.User != null)
+                    {
+                        <span>Logged in as <strong>@ViewBag.User</strong></span>
+                        <a asp-controller="Account" asp-action="Logout" class="button">Logout</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login" class="button">Login</a>
+                        <a asp-controller="Account" asp-action="Register" class="button">Sign Up</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 📦 Main Content -->
+    <div class="container" style="padding: 20px;">
+        @RenderBody()
+    </div>
+
+    <!-- 🧩 Footer -->
+    <footer style="text-align:center; margin-top:40px; padding:10px; font-size:0.9em; color: var(--text-color);">
+        &copy; 2025 MangaReaderR. Built by Ritesh.
+    </footer>
+
+    <!-- 📜 Scripts -->
+    <script src="~/js/site.js"></script>
+</body>
+
+</html>

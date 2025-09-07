@@ -1,0 +1,213 @@
+/* 🌗 Theme Variables */
+body[data-theme='dark'] {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --card-bg: #1e1e1e;
+    --button-bg: #333;
+    --button-hover: #555;
+    --dropdown-bg: #1e1e1e;
+    --link-color: #90caf9;
+}
+
+body[data-theme='light'] {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --card-bg: #ffffff;
+    --button-bg: #007bff;
+    --button-hover: #0056b3;
+    --dropdown-bg: #ffffff;
+    --link-color: #007bff;
+}
+
+/* 🌐 Global Styles */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 🏷️ Headings */
+h1, h2, h3 {
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* 🧱 Layout Containers */
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* 🃏 Manga Cards */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    flex: 0 0 auto;
+    width: 180px;
+    scroll-snap-align: start;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.card h4 {
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+/* 🔘 Buttons */
+.button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--button-bg);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--button-hover);
+}
+
+.search-button {
+    margin-left: 8px;
+}
+
+/* 🔝 Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--bg-color);
+}
+
+/* ☰ Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: var(--button-bg);
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--dropdown-bg, #333); /* fallback */
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    padding: 12px 16px;
+    z-index: 1000;
+    color: var(--text-color);
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-menu a,
+.dropdown-menu label,
+.dropdown-menu span {
+    display: block;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--button-hover);
+}
+
+/* 🎛️ Theme Submenu */
+.submenu {
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+/* 📚 Horizontal Scroll */
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+.chapter-images {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+.chapter-page {
+    max-width: 800px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.chapter-page {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}

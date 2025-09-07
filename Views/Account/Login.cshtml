@@ -1,0 +1,27 @@
+@model MangaReaderR.Models.LoginViewModel
+
+<h2 style="text-align:center;">Login</h2>
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger", style = "text-align:center;" })
+
+<form asp-action="Login" method="post" style="max-width:400px; margin:auto;">
+    <div style="margin-bottom:10px;">
+        <label>Username</label>
+        <input asp-for="Username" class="form-control" />
+        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+    </div>
+
+    <div style="margin-bottom:10px;">
+        <label>Password</label>
+        <input asp-for="Password" type="password" class="form-control" />
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+
+    <div style="margin-bottom:10px;">
+        <label>
+            <input asp-for="RememberMe" type="checkbox" /> Remember Me
+        </label>
+    </div>
+
+    <button type="submit" class="button" style="margin-top:10px;">Login</button>
+</form>

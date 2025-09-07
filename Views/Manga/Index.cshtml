@@ -1,0 +1,20 @@
+@model IEnumerable<MangaReaderR.Models.Manga>
+
+@{
+    ViewData["Title"] = "Manga List";
+}
+
+<h2>Manga Titles</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+@foreach (var manga in Model)
+{
+    <div style="border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+        <img src="@manga.CoverUrl" alt="@manga.Title" style="width: 100%; height: auto; border-radius: 4px;" />
+        <h4 style="margin-top: 10px;">@manga.Title</h4>
+        <a asp-controller="Manga" asp-action="Read" asp-route-id="@manga.Id" style="display: inline-block; margin-top: 5px; padding: 6px 12px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">
+            Read
+        </a>
+    </div>
+}
+</div>

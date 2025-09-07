@@ -1,0 +1,25 @@
+@model MangaReaderR.Models.Manga
+
+<h2 style="text-align: center;">Reading: @Model.Title</h2>
+
+@if (ViewBag.Pages is List<string> pages && pages.Any())
+{
+    foreach (var page in pages)
+    {
+        <div>
+            <img src="@Url.Content($"~/manga/{Model.FolderName}/{page}")"
+                 alt="@Model.Title page"
+                 style="width:100%; margin-bottom:20px;" />
+        </div>
+    }
+}
+else
+{
+    <p>No pages found for this manga.</p>
+}
+<div style="position:fixed; bottom:20px; left:50%; transform:translateX(-50%); z-index:1000;">
+    <a asp-controller="Home" asp-action="Index" class="button"
+       style="background-color:#007bff; color:white; padding:10px 20px; text-decoration:none; border-radius:5px;">
+        ⬅ Back to Home
+    </a>
+</div>
